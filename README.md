@@ -96,6 +96,97 @@ Docker Compose levanta los servicios en este orden automáticamente:
 
 ---
 
+## Historias de Usuario
+
+### HU-001 — Iniciar Sesión
+**Como** usuario administrador,
+**quiero** iniciar sesión con mi usuario y contraseña,
+**para** acceder al sistema de inventario de forma segura.
+
+**Criterios de aceptación:**
+- El sistema valida que el usuario exista en la base de datos
+- Si las credenciales son incorrectas, muestra un mensaje de error
+- Si son correctas, redirige al dashboard de inventario
+- La sesión persiste mientras el usuario no cierre sesión
+
+---
+
+### HU-002 — Cerrar Sesión
+**Como** usuario administrador autenticado,
+**quiero** cerrar mi sesión,
+**para** proteger el acceso al sistema cuando termine de usarlo.
+
+**Criterios de aceptación:**
+- El botón de logout está visible en todas las páginas
+- Al cerrar sesión, redirige al formulario de login
+- No se puede acceder al inventario sin estar autenticado
+
+---
+
+### HU-003 — Ver Inventario
+**Como** usuario administrador,
+**quiero** ver la lista completa de productos del inventario,
+**para** conocer el stock disponible.
+
+**Criterios de aceptación:**
+- Se muestra una tabla con todos los productos
+- La tabla incluye: nombre, descripción, cantidad y precio
+- Solo usuarios autenticados pueden ver el inventario
+
+---
+
+### HU-004 — Agregar Producto
+**Como** usuario administrador,
+**quiero** agregar nuevos productos al inventario,
+**para** mantener actualizado el stock.
+
+**Criterios de aceptación:**
+- Existe un formulario para ingresar nombre, descripción, cantidad y precio
+- Todos los campos obligatorios deben estar completos
+- Al guardar, el producto aparece en la lista de inventario
+- Se muestra un mensaje de éxito al agregar correctamente
+
+---
+
+### HU-005 — Editar Producto
+**Como** usuario administrador,
+**quiero** editar la información de un producto existente,
+**para** corregir o actualizar datos del inventario.
+
+**Criterios de aceptación:**
+- Cada producto tiene un botón de editar
+- El formulario se precarga con los datos actuales del producto
+- Al guardar, los cambios se reflejan inmediatamente en la lista
+- Se muestra un mensaje de éxito al editar correctamente
+
+---
+
+### HU-006 — Eliminar Producto
+**Como** usuario administrador,
+**quiero** eliminar un producto del inventario,
+**para** remover artículos que ya no están disponibles.
+
+**Criterios de aceptación:**
+- Cada producto tiene un botón de eliminar
+- Aparece una confirmación antes de eliminar
+- Al confirmar, el producto desaparece de la lista
+- Se muestra un mensaje de éxito al eliminar correctamente
+
+---
+
+### Resumen de H.U.
+
+| ID | Historia | Prioridad | Estimación | Servicio |
+|---|---|---|---|---|
+| HU-001 | Iniciar Sesión | Alta | 3 puntos | backend-1 |
+| HU-002 | Cerrar Sesión | Alta | 1 punto | backend-1 |
+| HU-003 | Ver Inventario | Alta | 2 puntos | backend-2 |
+| HU-004 | Agregar Producto | Media | 3 puntos | backend-2 |
+| HU-005 | Editar Producto | Media | 3 puntos | backend-2 |
+| HU-006 | Eliminar Producto | Media | 2 puntos | backend-2 |
+
+---
+
 ## Flujo de ramas
 
 ```
