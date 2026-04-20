@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+
+  # BASE DE DATOS
+  postgres:
+    image: postgres:15
+    container_name: bd-postgres
+    environment:
+      POSTGRES_DB: inventario_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - red-inventario
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d inventario_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # MIGRACIONES CON LIQUIBASE
+  liquibase:
+    build: ../repositorio5
+    container_name: bd-liquibase
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      --url=jdbc:postgresql://postgres:5432/inventario_db
+      --username=admin
+      --password=admin123
+      --changeLogFile=changelog-master.xml
+      update
+    networks:
+      - red-inventario
+
+  # BACKEND 1 — AUTENTICACION
+  backend-auth:
+    build: ../repositorio2
+    container_name: backend-autenticacion
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: clave-secreta-produccion
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: inventario_db
+      DB_USER: admin
+      DB_PASSWORD: admin123
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    networks:
+      - red-inventario
+
+  # BACKEND 2 — INVENTARIO
+  backend-inventario:
+    build: ../repositorio3
+    container_name: backend-inventario
+    ports:
+      - "5001:5001"
+    environment:
+      SECRET_KEY: clave-secreta-produccion
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: inventario_db
+      DB_USER: admin
+      DB_PASSWORD: admin123
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+    networks:
+      - red-inventario
+
+  # FRONTEND
+  frontend:
+    build: ../repositorio4
+    container_name: frontend-inventario
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend-auth
+      - backend-inventario
+    networks:
+      - red-inventario
+
+volumes:
+  postgres_data:
+
+networks:
+  red-inventario:
+    driver: bridge
