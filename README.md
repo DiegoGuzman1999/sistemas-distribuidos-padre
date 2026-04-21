@@ -20,11 +20,11 @@ En lugar de tener un solo programa que hace todo, el sistema se divide en piezas
 
 | Repositorio | Función | Puerto |
 |---|---|---|
-| [sistemas-distribuidos-padre](https://github.com/tu-usuario/sistemas-distribuidos-padre) | Orquesta todo con Docker Compose | — |
-| [sistemas-distribuidos-backend-1](https://github.com/tu-usuario/sistemas-distribuidos-backend-1) | API de autenticación (login/logout) | 5000 |
-| [sistemas-distribuidos-backend-2](https://github.com/tu-usuario/sistemas-distribuidos-backend-2) | API de inventario (CRUD productos) | 5001 |
-| [sistemas-distribuidos-frontend](https://github.com/tu-usuario/sistemas-distribuidos-frontend) | Interfaz web HTML/CSS | 3000 |
-| [sistemas-distribuidos-bd](https://github.com/tu-usuario/sistemas-distribuidos-bd) | Base de datos PostgreSQL + Liquibase | 5432 |
+| [sistemas-distribuidos-padre](https://github.com/DiegoGuzman1999/sistemas-distribuidos-padre) | Orquesta todo con Docker Compose | — |
+| [sistemas-distribuidos-backend-1](https://github.com/DiegoGuzman1999/sistemas-distribuidos-backend-1) | API de autenticación (login/logout) | 5000 |
+| [sistemas-distribuidos-backend-2](https://github.com/DiegoGuzman1999/sistemas-distribuidos-backend-2) | API de inventario (CRUD productos) | 5001 |
+| [sistemas-distribuidos-frontend](https://github.com/DiegoGuzman1999/sistemas-distribuidos-frontend) | Interfaz web HTML/CSS | 3000 |
+| [sistemas-distribuidos-bd](https://github.com/DiegoGuzman1999/sistemas-distribuidos-bd) | Base de datos PostgreSQL + Liquibase | 5432 |
 
 ---
 
