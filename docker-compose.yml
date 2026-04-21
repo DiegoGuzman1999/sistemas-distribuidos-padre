@@ -24,7 +24,7 @@ services:
 
   # MIGRACIONES CON LIQUIBASE
   liquibase:
-    build: ../repositorio5
+    build: ../sistemas-distribuidos-bd
     container_name: bd-liquibase
     depends_on:
       postgres:
@@ -40,7 +40,7 @@ services:
 
   # BACKEND 1 — AUTENTICACION
   backend-auth:
-    build: ../repositorio2
+    build: ../sistemas-distribuidos-backend-1
     container_name: backend-autenticacion
     ports:
       - "5000:5000"
@@ -59,7 +59,7 @@ services:
 
   # BACKEND 2 — INVENTARIO
   backend-inventario:
-    build: ../repositorio3
+    build: ../sistemas-distribuidos-backend-2
     container_name: backend-inventario
     ports:
       - "5001:5001"
@@ -78,7 +78,7 @@ services:
 
   # FRONTEND
   frontend:
-    build: ../repositorio4
+    build: ../sistemas-distribuidos-frontend
     container_name: frontend-inventario
     ports:
       - "3000:80"
