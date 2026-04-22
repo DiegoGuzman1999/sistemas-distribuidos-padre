@@ -1,0 +1,95 @@
+services:
+
+  postgres-dev:
+    image: postgres:15
+    container_name: postgres-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: inventario_db_dev
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - red-dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d inventario_db_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  liquibase-dev:
+    build: ../sistemas-distribuidos-bd
+    container_name: liquibase-dev
+    depends_on:
+      postgres-dev:
+        condition: service_healthy
+    command: >
+      --url=jdbc:postgresql://postgres-dev:5432/inventario_db_dev
+      --username=admin
+      --password=admin123
+      --changeLogFile=changelog-master.xml
+      update
+    networks:
+      - red-dev
+
+  backend-autenticacion-dev:
+    build: ../sistemas-distribuidos-backend-1
+    container_name: backend-autenticacion-dev
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: clave-dev
+      DB_HOST: postgres-dev
+      DB_PORT: 5432
+      DB_NAME: inventario_db_dev
+      DB_USER: admin
+      DB_PASSWORD: admin123
+    depends_on:
+      liquibase-dev:
+        condition: service_completed_successfully
+    networks:
+      - red-dev
+
+  backend-inventario-dev:
+    build: ../sistemas-distribuidos-backend-2
+    container_name: backend-inventario-dev
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      SECRET_KEY: clave-dev
+      DB_HOST: postgres-dev
+      DB_PORT: 5432
+      DB_NAME: inventario_db_dev
+      DB_USER: admin
+      DB_PASSWORD: admin123
+    depends_on:
+      liquibase-dev:
+        condition: service_completed_successfully
+    networks:
+      - red-dev
+
+  frontend-dev:
+    build: ../sistemas-distribuidos-frontend
+    container_name: frontend-dev
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend-autenticacion-dev
+      - backend-inventario-dev
+    networks:
+      - red-dev
+
+volumes:
+  postgres_dev_data:
+
+networks:
+  red-dev:
+    driver: bridge
