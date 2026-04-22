@@ -1,6 +1,6 @@
 # ADR-002 — Usar Nginx como Proxy Inverso en lugar de URLs hardcodeadas
 
-**Fecha:** 2026-04-20
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999
 

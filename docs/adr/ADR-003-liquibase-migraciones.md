@@ -1,6 +1,6 @@
 # ADR-003 — Usar Liquibase para Migraciones de Base de Datos
 
-**Fecha:** 2026-04-20
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999
 

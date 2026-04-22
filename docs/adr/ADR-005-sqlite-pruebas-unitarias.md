@@ -1,6 +1,6 @@
 # ADR-005 — Usar SQLite en Memoria para Pruebas Unitarias
 
-**Fecha:** 2026-04-22
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999
 

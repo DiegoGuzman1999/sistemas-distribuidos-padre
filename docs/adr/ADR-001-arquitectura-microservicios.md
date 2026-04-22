@@ -1,6 +1,6 @@
 # ADR-001 — Arquitectura de Microservicios en lugar de Monolito
 
-**Fecha:** 2026-04-20
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999, Checho999awoo
 

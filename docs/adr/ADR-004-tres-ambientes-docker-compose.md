@@ -1,6 +1,6 @@
 # ADR-004 — Tres Ambientes Independientes con Docker Compose
 
-**Fecha:** 2026-04-20
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999
 

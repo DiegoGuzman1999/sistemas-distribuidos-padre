@@ -1,6 +1,6 @@
 # ADR-006 — Estrategia de Ramas Git: dev → qa → main
 
-**Fecha:** 2026-04-20
+**Fecha:** 2026-04-07
 **Estado:** Aceptado
 **Autores:** DiegoGuzman1999, Checho999awoo
 
