@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-04-07
 **Estado:** Aceptado
-**Autores:** DiegoGuzman1999
+**Autores:** DiegoGuzman1999, Checho999awoo
 
 ---
 
